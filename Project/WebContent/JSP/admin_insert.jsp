@@ -7,6 +7,9 @@
 <title>admin_list</title>
 </head>
 <body>
+	<h2>
+	<a href="admin_list.jsp">Movie List</a>  
+	<a href="admin_member.jsp">  Member management</a></h2>
 	<div align="center">
 		<h1>Insert film</h1>
 		<form name = form1 method = get action = "add_film.jsp">

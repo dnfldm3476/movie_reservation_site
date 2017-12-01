@@ -1,10 +1,6 @@
 package movie;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 import movie.Movie;
@@ -24,11 +20,13 @@ public class movie_Beans {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			String url = "jdbc:mysql://" + SERVER + ":" + PORT + "/" + DATABASE;
-			String option = "?useUnicode=true&characterEncoding=utf8";
-			url = url + option;
-
+			//String option = "?useUnicode=true&characterEncoding=utf8";
+			//url = url + option;
+			
 			conn = DriverManager.getConnection(url, ID, PWD);
-		} catch (Exception e) {
+			System.out.println("in connect");
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -36,10 +34,11 @@ public class movie_Beans {
 	public Movie getDB(int id_film) {
 		connect();
 
-		String sql = "select * from movie_info where id_file = ?";
+		String sql = "select * from movie_info where id_film = ?";
 		Movie movie = new Movie();
 		try {
 			stat = conn.prepareStatement(sql);
+			stat.setInt(1, id_film);
 			rs = stat.executeQuery();
 			rs.next();
 			movie.setId_film(rs.getInt("id_film"));
@@ -104,6 +103,7 @@ public class movie_Beans {
 
 	public boolean insertDB(Movie movie) {
 		connect();
+		System.out.println("in insertDB");
 		String sql = "insert into movie_info(id_film, name_film, age_phase, seat_num, date) values(?, ?, ?, ?, ?)";
 
 		try {
@@ -113,6 +113,7 @@ public class movie_Beans {
 			stat.setInt(3, movie.getAge_phase());
 			stat.setInt(4, movie.getSeat_num());
 			stat.setString(5, movie.getDate());
+			stat.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -120,5 +121,25 @@ public class movie_Beans {
 			disconnect();
 		}
 		return true;
+	}
+	public boolean deleteDB(int id) {
+		connect();
+		
+		String sql = "delete from movie_info where id_film = ?";
+		
+		try { 
+			stat = conn.prepareStatement(sql);
+			stat.setInt(1, id);
+			stat.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;			
+		}
+		finally {
+			disconnect();
+		}
+		return true;
+		
 	}
 }

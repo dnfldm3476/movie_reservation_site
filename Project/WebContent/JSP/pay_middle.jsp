@@ -4,17 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>reserve_controll</title>
-
-
-
-
-
-
-
-
-
+<title>pay_middle</title>
 </head>
+<%
+	session.setAttribute("pay_movie", Integer.valueOf(request.getParameter("choice")));
+	response.sendRedirect("card_pay.jsp");
+
+%>
+
+
 <body>
 
 </body>

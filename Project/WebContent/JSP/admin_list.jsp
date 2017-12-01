@@ -10,7 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div align="center">
+	<h2><a href="admin_insert.jsp">Insert film</a>
+	<a href="admin_member.jsp">Member management</a></h2>
+	
+		<div align="center">
+	
 		<h1>상영 영화 리스트</h1>
 		<hr>
 		<table height="70%" width="90%">
@@ -26,7 +30,7 @@
 				tmp = movie_list.getDBList();
 				for (Movie i : tmp) {
 			%>
-			<form name=form1 method=get action="login.jsp">
+			<form name=form1 method=get action="admin_delete_movie.jsp">
 			<tr align="center">
 				<td>
 					<%
@@ -49,7 +53,7 @@
 					%>
 				</td>
 				<td><input style="border: none" type=submit value="remove" /></td>
-				<td><input type=hidden name=favorite value=<%=i.getId_film()%> /></td>
+				<td><input type=hidden name=delete value=<%=i.getId_film()%> /></td>
 			</tr>
 			</form>
 

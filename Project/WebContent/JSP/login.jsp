@@ -13,7 +13,7 @@
 	<div align="center">
 		<h1>로그인</h1>
 
-		<form name = form1 method=post action=reserve_movie.jsp>
+		<form name = form1 method=post action=login_controll.jsp>
 		<table border=2 cellspacing="1" cellpadding="5">
 		
 			<tr>

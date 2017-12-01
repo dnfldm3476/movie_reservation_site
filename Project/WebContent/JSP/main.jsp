@@ -26,7 +26,7 @@
 				tmp = movie_list.getDBList();
 				for (Movie i : tmp) {
 			%>
-			<form name=form1 method=get action="login.jsp">
+			<form name=form1 method=get action="main_controll.jsp">
 			<tr align="center">
 				<td>
 					<%

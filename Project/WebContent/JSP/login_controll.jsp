@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, customer.*, movie.*"%>
+<%@ page import="java.util.ArrayList, customer.*, movie.*, movie_seat.*"%>
 <jsp:useBean id="customer_list" class="customer.customer_Beans"
 	scope="request" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,20 +20,25 @@
 			if ((i.getName_mem().compareTo(username) == 0) && (i.getPass_word().compareTo(password) == 0)) {
 				//아이디와 비밀번호가 같으면 login!!
 				// 관리자인이 확인
-				if (i.getName_mem().compareTo("admin") == 0)
-					;// 관리자 모드
+				
+				if (i.getName_mem().compareTo("admin") == 0) {
+					out.println("admin login");
+					response.sendRedirect("admin_list.jsp");
+					return;  // 관리자 모드
+				}
 				else { // 일반 회원 로그인 -> 예매 사이트로 이동
 					session.setAttribute("user", i);
-					response.sendRedirect("reserve_movie.jsp");
+					response.sendRedirect("book_movie.jsp");
 					return;
 				}
 
 			}
 		}
 
-	} else {
-		out.println("<script type='text/javascript'>alert('unmatched password');history.back();</script>");
-	}
+	} 
+	System.out.println("fefe");
+	out.println("<script type='text/javascript'>alert('unmatched password');history.back();</script>");
+	
 %>
 
 

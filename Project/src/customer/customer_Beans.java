@@ -1,6 +1,9 @@
 package customer;
 import java.sql.*;
 import java.util.ArrayList;
+
+import movie_book.movie_book;
+
 public class customer_Beans {
 
 	private final String SERVER = "localhost";
@@ -26,6 +29,31 @@ public class customer_Beans {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public Customer getDB(int id_mem) {
+		connect();
+
+		String sql = "select * from customer where id_mem = ?";
+		Customer customer = new Customer();
+		try {
+			stat = conn.prepareStatement(sql);
+			stat.setInt(1, id_mem);
+			rs = stat.executeQuery();
+			rs.next();
+			customer.setId_mem(rs.getInt("id_mem"));
+			customer.setPass_word(rs.getString("pass_word"));
+			customer.setName_mem(rs.getString("name_mem"));
+			customer.setAge_mem(rs.getInt("age_mem"));
+			customer.setRegister_date(rs.getString("register_date"));
+			rs.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+
+		return customer;
 	}
 	public ArrayList<Customer> getDBList() {
 		connect();
@@ -98,7 +126,44 @@ public class customer_Beans {
 		}
 		return true;
 	}
+
+	public boolean updateDB(Customer customer) {
+		connect();
+		
+		String sql = "update customer set pass_word = ?,age_mem = ? where id_mem = ?";
+		try {
+			stat = conn.prepareStatement(sql);
+			stat.setString(1, customer.getPass_word() );
+			stat.setInt(2, customer.getAge_mem());
+			stat.setInt(3, customer.getId_mem());
+			stat.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 	//public boolean updateDB(Customer customer);
-	//public boolean deleteDB(int id);
+	public boolean deleteDB(int id) {
+		connect();
+		
+		String sql = "delete from customer where id_mem = ?";
+		
+		try { 
+			stat = conn.prepareStatement(sql);
+			stat.setInt(1, id);
+			stat.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;			
+		}
+		finally {
+			disconnect();
+		}
+		return true;
+		
+	}
 	
 }

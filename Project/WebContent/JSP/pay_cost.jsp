@@ -9,20 +9,19 @@
 <title>pay_cost</title>
 </head>
 <body>
-	<a href="main.jsp">main으로 이동</a>  
+	<a href="main.jsp"> main으로 이동</a>
 
 	<div align="center">
-
-		<h1>상영 영화 리스트</h1>
+		<h1>예매 영화 리스트  </h1>
 		<hr>
 		<table height="70%" width="90%">
 			<tr>
-				<th>영화 제목</th>
+				<th>타이틀</th>
 				<th>상영기간</th>
 				<th>예약일</th>
 				<th>좌석번호</th>
 				<th>예약 상황</th>
-				<th>결제 및 취소</th>
+				<th colspan = 2>결제 및 취소</th>
 			</tr>
 			<%
 				ArrayList<movie_book> book_list = new ArrayList<movie_book>();
@@ -59,12 +58,13 @@
 					%>
 				</td>
 				<form name=form1 method=get action="pay_middle.jsp">
-					<td><input style="border: none" type=submit value="결제" /></td>
-					<td><input type=hidden name=choice value=<%=i.getId_film()%> /></td>
+					<td><input style="border:none;height:34px;width:120px;background-color:blue;color:white;" type=submit value="결제" />
+					<input type=hidden name=choice value=<%=i.getId_film()%> /></td>
 				</form>
-				<form name=form1 method=get action="delete_book.jsp">>
-				<td><input style="border: none" type=submit value="예매내역 삭제" /></td>
-				<td><input type=hidden name=delete value=<%=i.getId_resv()%> /></td>
+				<form name=form1 method=get action="delete_book.jsp">
+					>
+					<td><input style="border:none;height:34px;width:120px;background-color:blue;color:white;" type=submit value="예매내역 삭제" />
+					<input type=hidden name=delete value=<%=i.getId_resv()%> /></td>
 				</form>
 			</tr>
 

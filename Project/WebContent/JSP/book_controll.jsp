@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList,customer.*, movie.*, movie_book.*, movie_seat.*"%>
+<%@ page import="java.text.SimpleDateFormat, java.util.Date, java.util.ArrayList,customer.*, movie.*, movie_book.*, movie_seat.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,13 +30,20 @@
 			return;
 		}
 	}
-		
+	Date d = new Date();
+    String s = d.toString();
+    System.out.println("현재날짜 : "+ s);
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	String register_date = sdf.format(d);
+    System.out.println("현재날짜 : "+ register_date);
+	
+	
 	book.setDate(movie.getDate()); 
 	book.setFilm_name(movie.getName_film());
 	book.setId_mem(user.getId_mem());
 	book.setId_film(movie.getId_film());
 	book.setId_resv(book_bean.getAllDBList().size() + 1);
-	book.setResv_date("222"); // 오늘날짜
+	book.setResv_date(register_date); // 오늘날짜
 	book.setSeat_no(seat_num);
 	book.setStatus(" - ");
 

@@ -13,6 +13,11 @@
 <%
 	String username = request.getParameter("username");
 	String password = request.getParameter("password");
+	if (username == "" || password == "")
+	{
+		out.println("<script type='text/javascript'>alert('미기입 사항이 있습니다.');history.back();</script>");
+		return;
+	}
 	if (username != null && password != null) {
 		ArrayList<Customer> customer = customer_list.getDBList();
 
@@ -28,7 +33,18 @@
 				}
 				else { // 일반 회원 로그인 -> 예매 사이트로 이동
 					session.setAttribute("user", i);
-					response.sendRedirect("book_movie.jsp");
+					if (session.getAttribute("movie_choice") != null) {
+						movie_Beans movie_bean = new movie_Beans();
+						int movie_num = Integer.valueOf(session.getAttribute("movie_choice").toString());
+						if (i.getAge_mem() < movie_bean.getDB(movie_num).getAge_phase()) {
+							out.println("<script type='text/javascript'>alert('이 영화를 보기에는 적절하지 않습니다. 메인으로 돌아갑니다.');location.href = 'main.jsp' ;</script>");
+							return;
+						}
+							
+						response.sendRedirect("book_movie.jsp");
+					}
+					else 
+						response.sendRedirect("main.jsp");
 					return;
 				}
 

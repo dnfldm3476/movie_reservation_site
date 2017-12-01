@@ -20,7 +20,7 @@
 	int seat_num = book.getSeat_no();
 	
 	seat_bean.updateDB(movie_num, seat_num, 0); // 좌석 수정
-	book_bean.deleteDB(id_resv); // 예약 취소
+	book_bean.deleteDB_idresv(id_resv); // 예약 취소
 	response.sendRedirect("pay_cost.jsp");
 %>
 <body>

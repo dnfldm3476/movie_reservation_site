@@ -10,6 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div align="right">
+		<h2>
+			<a href="login.jsp">login</a> <a href="logout_controll.jsp">logout</a>
+		</h2>
+	</div>
 	<div align="center">
 		<h1>상영 영화 리스트</h1>
 		<hr>
@@ -27,35 +32,30 @@
 				for (Movie i : tmp) {
 			%>
 			<form name=form1 method=get action="main_controll.jsp">
-			<tr align="center">
-				<td>
-					<%
-						out.println(i.getId_film());
-					%>
-				</td>
-				<td>
-					<%
-						out.println(i.getName_film());
-					%>
-				</td>
-				<td>
-					<%
-						out.println(i.getAge_phase());
-					%>
-				</td>
-				<td>
-					<%
-						out.println(i.getSeat_num());
-					%>
-				</td>
-				<td>
-					<%
-						out.println(i.getDate());
-					%>
-				</td>
-				<td><input style="border: none" type=submit value="선택" /></td>
-				<td><input type=hidden name=favorite value=<%=i.getId_film()%> /></td>
-			</tr>
+				<tr align="center">
+					<td>
+						<%
+							out.println(i.getName_film());
+						%>
+					</td>
+					<td>
+						<%
+							out.println(i.getAge_phase());
+						%>
+					</td>
+					<td>
+						<%
+							out.println(i.getSeat_num());
+						%>
+					</td>
+					<td>
+						<%
+							out.println(i.getDate());
+						%>
+					</td>
+					<td><input type=submit value="선택" /></td>
+					<td><input type=hidden name=favorite value=<%=i.getId_film()%> /></td>
+				</tr>
 			</form>
 
 			<%

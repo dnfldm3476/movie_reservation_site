@@ -20,8 +20,10 @@
 
 	
 	Movie movie = new Movie();
-	
-	movie.setId_film(movie_list.getDBList().size() + 1);
+	if (movie_list.getDBList().size() != 0)
+		movie.setId_film(movie_list.getDBList().get(movie_list.getDBList().size() - 1).getId_film() + 1);
+	else
+		movie.setId_film(1);
 	movie.setName_film(movie_title);
 	movie.setSeat_num(Integer.parseInt(movie_seat));
 	movie.setAge_phase(Integer.parseInt(movie_age));

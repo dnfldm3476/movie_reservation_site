@@ -30,7 +30,7 @@
 	Customer user = (Customer) session.getAttribute("user");
 	if (user != null) {
 		if (user.getAge_mem() < movie_bean.getDB(movie_num).getAge_phase()) { // 나이가 더 적으면 경고
-			out.println("<script type='text/javascript'>alert('no seat in this movie');history.back();</script>");
+			out.println("<script type='text/javascript'>alert('이 영화를 보기에는 적절하지 않습니다.');history.back();</script>");
 			return;
 		}
 		response.sendRedirect("book_movie.jsp");

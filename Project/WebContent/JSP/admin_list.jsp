@@ -10,8 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2><a href="admin_insert.jsp">Insert film</a>
-	<a href="admin_member.jsp">Member management</a></h2>
+<h2><a href="admin_insert.jsp">Insert film</a>
+	<a href="admin_member.jsp">Member management</a>
+	<div align="right">
+	<a href="logout_controll.jsp">logout</a>
+	</div>
+	</h2>
 	
 		<div align="center">
 	

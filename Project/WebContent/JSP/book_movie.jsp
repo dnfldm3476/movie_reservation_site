@@ -9,8 +9,8 @@
 <title>book_movie</title>
 </head>
 <body>
-<a href="pay_cost.jsp">결제 화면</a>  
-
+<h2><a href="pay_cost.jsp">결제 화면</a>  
+<a href="modify_customer.jsp">회원정보 변경</a></h2>  
 	<div align="center">
 		<h1>영화 예매 화면</h1>
 		<form name=form1 method=get action=book_controll.jsp>
@@ -22,7 +22,9 @@
 				</tr>
 				<tr>
 					<%
-					int movie_num = Integer.valueOf(session.getAttribute("movie_choice").toString());					seat_Beans seat_list = new seat_Beans();
+					int movie_num = Integer.valueOf(session.getAttribute("movie_choice").toString());	
+					System.out.println("movie num is " + movie_num);
+					seat_Beans seat_list = new seat_Beans();
 					movie_seat seat = seat_list.getDB(movie_num);
 				
 					for (int i = 0; i < 9; i++) {						

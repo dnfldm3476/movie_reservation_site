@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>admin_member</title>
 </head>
 <body>
 	<h2><a href="admin_list.jsp">Back</a> Member management

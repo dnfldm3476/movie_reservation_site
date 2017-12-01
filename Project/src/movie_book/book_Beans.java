@@ -213,7 +213,47 @@ public class book_Beans {
 		return true;
 	}
 	
-	public boolean deleteDB(int id_resv) {
+	public boolean deleteDB_idmem(int id_mem) {
+		connect();
+		
+		String sql = "delete from movie_book where id_mem = ?";
+		
+		try { 
+			stat = conn.prepareStatement(sql);
+			stat.setInt(1, id_mem);
+			stat.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;			
+		}
+		finally {
+			disconnect();
+		}
+		return true;
+		
+	}
+	public boolean deleteDB_idfilm(int id_film) {
+		connect();
+		
+		String sql = "delete from movie_book where id_film = ?";
+		
+		try { 
+			stat = conn.prepareStatement(sql);
+			stat.setInt(1, id_film);
+			stat.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;			
+		}
+		finally {
+			disconnect();
+		}
+		return true;
+		
+	}
+	public boolean deleteDB_idresv(int id_resv) {
 		connect();
 		
 		String sql = "delete from movie_book where id_resv = ?";
